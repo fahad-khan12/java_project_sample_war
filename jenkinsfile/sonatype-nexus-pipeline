@@ -1,0 +1,26 @@
+pipeline {
+agent any
+  tools {
+  maven "maven3"
+  jdk "jdk17"
+}
+stages {
+  stage('GIT CLONE') {
+  steps {
+  git branch: "main", url: "https://github.com/danish2109f/java_project_sample_war.git"
+}}
+  stage('BUILD') {
+  steps {
+  sh 'mvn clean install'
+}}
+  stage('PUBLISH TO NEXUS') {
+  steps {
+  script {
+  withMaven(globalMavenSettingsConfig: 'nexus-settings-xml', jdk: '', maven: '', mavenSettingsConfig: '', traceability: true) {
+  sh 'mvn deploy -DskipTests=true'
+}
+}
+}
+}
+}
+}
