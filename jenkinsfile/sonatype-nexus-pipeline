@@ -16,7 +16,7 @@ stages {
   stage('PUBLISH TO NEXUS') {
   steps {
   script {
-  withMaven(globalMavenSettingsConfig: 'nexus-settings-xml', jdk: '', maven: '', mavenSettingsConfig: '', traceability: true) {
+  withMaven(globalMavenSettingsConfig: 'nexus', jdk: '', maven: '', mavenSettingsConfig: '', traceability: true) {
   sh 'mvn deploy -DskipTests=true'
 }
 }
