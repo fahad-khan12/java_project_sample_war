@@ -17,7 +17,6 @@ stages {
   steps {
   script {
   withMaven(globalMavenSettingsConfig: 'nexus', jdk: '', maven: '', mavenSettingsConfig: '', traceability: true) {
-  sh 'java --version'
   sh 'mvn deploy -DskipTests=true'
 }
 }
